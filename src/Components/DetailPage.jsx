@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams , Link} from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import {Typography , Grid , Container ,Button , Popover} from '@mui/material';
 import { useState } from 'react';
 
@@ -23,8 +23,16 @@ const DetailPage = () => {
     const open = Boolean(anchorEl);
     const id = open ? 'options-popover' : undefined;
 
-    const AddItem = (event) => {
-        console.log(event);
+    const handleItemClick = (event) => {
+        const buttonText = event.target.textContent
+        if(buttonText === 'Post')
+        {
+            window.location.href = "/create-post";
+        }
+        else{
+            console.log(buttonText);
+            window.location.href = "/create-story";
+        }
     }
     
     return (
@@ -32,16 +40,17 @@ const DetailPage = () => {
             <Typography variant="h3" gutterBottom align='center'>
             {humanReadableDate}
             </Typography>
-            <Container>
-                <Grid container spacing={0}>
+            <Container> 
+                {/* map over the pageData */}
+                <Grid container spacing={10}>
                     <Grid item xs={2}>
                         <Typography variant="h6" gutterBottom align='left'>
-                            {humanReadableDate}
+                            HH:MM
                         </Typography>
                     </Grid>
                     <Grid item xs={10}>
                         <Typography variant="h5" gutterBottom align='center'>
-                            Time
+                            Data
                         </Typography>
                     </Grid>
                 </Grid>
@@ -67,13 +76,13 @@ const DetailPage = () => {
                     }}
                 >
                     <Typography sx={{ padding: '16px' }}>
-                    <Button  variant="contained" sx={{ marginBottom: '8px', width: '100%' }}>
+                    <Button onClick={handleItemClick} variant="contained" sx={{ marginBottom: '8px', width: '100%' }}>
                         Post
                     </Button>
-                    <Button  variant="contained" sx={{ marginBottom: '8px', width: '100%' }}>
+                    <Button onClick={handleItemClick} variant="contained" sx={{ marginBottom: '8px', width: '100%' }}>
                         Reel
                     </Button>
-                    <Button  variant="contained" sx={{ width: '100%' }}>
+                    <Button onClick={handleItemClick} variant="contained" sx={{ width: '100%' }}>
                         Story
                     </Button>
                     </Typography>

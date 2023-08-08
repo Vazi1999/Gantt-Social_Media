@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Typography, TextField, Button, Container, CssBaseline, Box } from '@mui/material';
 
+const theme = createTheme({
+  direction: 'rtl', // Set the direction to right-to-left
+});
 
-
-function PostPage() {
+function ReelStoryPage() {
   const [description, setDescription] = useState('');
   const [selectedFiles, setSelectedFiles] = useState([]);
 
@@ -16,41 +19,24 @@ function PostPage() {
   };
 
   const handleCreatePost = () => {
-    console.log(description);
+    // You can implement the logic to create a post here
+    // Use 'description' and 'selectedFiles' for post content and images
     console.log('Creating post...');
   };
 
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container maxWidth="md">
-        <Typography variant="h2">צור פוסט</Typography>
-        <TextField
-          label="תיאור הפוסט"
-          multiline
-          rows={4}
-          fullWidth
-          value={description}
-          onChange={handleDescriptionChange}
-          margin="normal"
-          variant="outlined"
-        />
-        <Box mt={2}>
+      <Container maxWidth="md" align='center'>
+        <Typography variant="h2">הוסף ריל או סטורי</Typography>
           <input
             type="file"
             accept="image/*"
-            multiple
             onChange={handleFileSelection}
           />
-        </Box>
-        <Box mt={2}>
-          <Button variant="contained" color="secondary" onClick={handleCreatePost}>
-            צור פוסט
-          </Button>
-        </Box>
       </Container>
-    </div>
+    </ThemeProvider>
   );
 }
 
-export default PostPage;
+export default ReelStoryPage;
