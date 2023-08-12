@@ -1,41 +1,104 @@
 import React, { useState } from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Typography, TextField, Button, Container, CssBaseline, Box } from '@mui/material';
+import { Typography, TextField, Button, Container, CssBaseline, Box ,InputAdornment , Select , MenuItem , FormControl , InputLabel} from '@mui/material';
 
-const theme = createTheme({
-  direction: 'rtl', // Set the direction to right-to-left
-});
+
 
 function ReelStoryPage() {
-  const [description, setDescription] = useState('');
-  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [files, setFiles] = useState([]);
+  const [selectedTime, setSelectedTime] = useState('');
+  const [selectedOption, setSelectedOption] = useState('');
 
-  const handleDescriptionChange = (event) => {
-    setDescription(event.target.value);
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
   };
 
   const handleFileSelection = (event) => {
-    setSelectedFiles(Array.from(event.target.files));
+    setFiles([...files, ...event.target.files]);
   };
 
-  const handleCreatePost = () => {
-    // You can implement the logic to create a post here
-    // Use 'description' and 'selectedFiles' for post content and images
-    console.log('Creating post...');
+  const handleTimeChange = (event) => {
+    setSelectedTime(event.target.value);
+  };
+
+
+  const handleCreate = async () => {
+    const formData = new FormData();
+    files.forEach((file) => {
+      formData.append('file', file);
+    });
+    formData.append('time', selectedTime);
+    formData.append('option', selectedOption);
+    try {
+      console.log(formData);
+      const response = await fetch('http://localhost:3000/api/createReelStory', {
+        method: 'POST',
+        body: formData,
+      });
+  
+      if (response.ok) {
+        console.log('Created successfully');
+      } else {
+        console.error('Failed to create post');
+      }
+    } catch (error) {
+      console.error('Error creating post', error);
+    }
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <div>
       <CssBaseline />
-      <Container maxWidth="md" align='center'>
-        <Typography variant="h2">הוסף ריל או סטורי</Typography>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileSelection}
+      <Container maxWidth="md" align="center">
+        <Typography variant="h4" gutterBottom>
+          הוסף ריל או סטורי
+        </Typography>
+        <FormControl fullWidth variant="outlined" margin="normal">
+          <InputLabel>בחר אופציה</InputLabel>
+          <Select
+            value={selectedOption}
+            onChange={handleOptionChange}
+            label="בחר אופציה"
+          >
+            <MenuItem value="Reel">ריל</MenuItem>
+            <MenuItem value="Story">סטורי</MenuItem>
+          </Select>
+        </FormControl>
+        <Box mt={2}>
+          <input type="file" onChange={handleFileSelection} />
+        </Box>
+        <Box mt={2}>
+          <TextField
+            label="זמן"
+            type="time"
+            value={selectedTime}
+            onChange={handleTimeChange}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            InputProps={{
+              inputProps: { step: 300 }, // 5-minute intervals
+              startAdornment: (
+                <InputAdornment position="start">
+                  <span role="img" aria-label="Clock">
+                    ⏰
+                  </span>
+                </InputAdornment>
+              ),
+            }}
+            fullWidth
           />
+        </Box>
+        <Box mt={2}>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={handleCreate}
+          >
+            צור רילס או סטורי
+          </Button>
+        </Box>
       </Container>
-    </ThemeProvider>
+    </div>
   );
 }
 

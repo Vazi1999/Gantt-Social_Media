@@ -5,10 +5,9 @@ import PostPage from './CreatePost';
 import ReelStoryPage from './CreateReelStory';
 import SignInSide from './SignInSide';
 import SignUpPage from './SignUp';
+import Test from './TEST';
 
 const App = () => {
-
-
   return (
     <div lang='he' dir='rtl'>
         <Router>
@@ -19,6 +18,7 @@ const App = () => {
           <Route path="/create-post" element={<PostPage />} />
           <Route path="/create-story" element={<ReelStoryPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
+          <Route path="/test" element={<Test />} />
         </Routes>
       </Router>
     </div>

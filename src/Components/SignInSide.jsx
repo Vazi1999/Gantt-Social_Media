@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState , useEffect} from 'react';
 
 
 function Copyright(props) {
@@ -22,6 +23,8 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
+
+
 export default function SignInSide() {
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -32,6 +35,21 @@ export default function SignInSide() {
     });
   };
 
+  const [data, setData] = useState('');
+
+  useEffect(() => {
+    fetch('/api/data')
+      .then(response => response.json())
+      .then(data => setData(data));
+  }, []);
+
+  if(data)
+  {
+    console.log(data);
+  }
+  else{
+    console.log("No Data");
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>

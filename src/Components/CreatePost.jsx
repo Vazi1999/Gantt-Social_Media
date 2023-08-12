@@ -1,23 +1,50 @@
 import React, { useState } from 'react';
-import { Typography, TextField, Button, Container, CssBaseline, Box } from '@mui/material';
+import { Typography, TextField, Button, Container, CssBaseline, Box ,InputAdornment } from '@mui/material';
 
 
 
 function PostPage() {
   const [description, setDescription] = useState('');
-  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [files, setFiles] = useState([]);
+  const [selectedTime, setSelectedTime] = useState('');
 
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
   };
 
   const handleFileSelection = (event) => {
-    setSelectedFiles(Array.from(event.target.files));
+    setFiles([...files, ...event.target.files]);
   };
 
-  const handleCreatePost = () => {
-    console.log(description);
-    console.log('Creating post...');
+  const handleTimeChange = (event) => {
+    setSelectedTime(event.target.value);
+  };
+
+  const handleCreatePost = async () => {
+    const formData = new FormData();
+    formData.append('description', description);
+
+    formData.append('time', selectedTime);
+
+    files.forEach((file) => {
+      formData.append('files', file);
+    });
+      
+    try {
+      console.log(formData);
+      const response = await fetch('http://localhost:3000/api/createPost', {
+        method: 'POST',
+        body: formData,
+      });
+  
+      if (response.ok) {
+        console.log('Post created successfully');
+      } else {
+        console.error('Failed to create post');
+      }
+    } catch (error) {
+      console.error('Error creating post', error);
+    }
   };
 
   return (
@@ -35,15 +62,35 @@ function PostPage() {
           margin="normal"
           variant="outlined"
         />
-        <Box mt={2}>
+         <Box mt={2} align='center'>
+          <TextField
+            label="זמן"
+            type="time"
+            value={selectedTime}
+            onChange={handleTimeChange}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            InputProps={{
+              inputProps: { step: 300 }, // 5-minute intervals
+              startAdornment: (
+                <InputAdornment position="start">
+                  <span role="img" aria-label="Clock">
+                    ⏰
+                  </span>
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
+        <Box mt={2} align='center'>
           <input
             type="file"
-            accept="image/*"
             multiple
             onChange={handleFileSelection}
           />
         </Box>
-        <Box mt={2}>
+        <Box mt={2} align='center'>
           <Button variant="contained" color="secondary" onClick={handleCreatePost}>
             צור פוסט
           </Button>
@@ -52,5 +99,4 @@ function PostPage() {
     </div>
   );
 }
-
 export default PostPage;
