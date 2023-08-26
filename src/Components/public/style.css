@@ -1,0 +1,150 @@
+.post {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.post .div {
+  background-color: #c0aab7;
+  border: 1px solid;
+  border-color: #000000;
+  height: 650px;
+  position: relative;
+  width: 375px;
+}
+
+.post .text-wrapper {
+  color: #ffffff;
+  font-family: "Roboto", Helvetica;
+  font-size: 15px;
+  font-weight: 700;
+  left: 51px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 18px;
+  white-space: nowrap;
+}
+
+.post .ellipse {
+  height: 32px;
+  left: 9px;
+  position: absolute;
+  top: 8px;
+  width: 36px;
+}
+
+.post .frame {
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 331px;
+  left: 0;
+  position: absolute;
+  top: 46px;
+  width: 375px;
+}
+
+.post .next{
+  font-size: 20px;
+  background-color: transparent;
+  position: relative;
+  background-position: 50% 50%;
+  background-size: cover;
+  top:190px;
+}
+
+.post .prev{
+  font-size: 20px;
+  background-color: transparent;
+  position: relative;
+  background-position: 50% 50%;
+  background-size: cover;
+  top:190px;
+  right:320px;
+}
+
+.post .group {
+  height: 3px;
+  left: 354px;
+  position: absolute;
+  top: 22px;
+  transform: rotate(90deg);
+  width: 12px;
+}
+
+.post .ellipse-2 {
+  background-color: #ffffff;
+  border-radius: 1.32px/1.5px;
+  height: 3px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 3px;
+}
+
+.post .ellipse-3 {
+  background-color: #ffffff;
+  border-radius: 1.32px/1.5px;
+  height: 3px;
+  left: 5px;
+  position: absolute;
+  top: 0;
+  width: 3px;
+}
+
+.post .ellipse-4 {
+  background-color: #ffffff;
+  border-radius: 1.32px/1.5px;
+  height: 3px;
+  left: 9px;
+  position: absolute;
+  top: 0;
+  width: 3px;
+}
+
+.post .p {
+  color: #ffffff;
+  font-family: "Roboto", Helvetica;
+  font-size: 14px;
+  font-weight: 700;
+  left: 9px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 394px;
+  width: 353px;
+}
+
+.post .vector {
+  height: 15px;
+  left: 30px;
+  position: absolute;
+  top: 610px;
+  width: 31px;
+}
+
+.post .vector-stroke {
+  height: 17px;
+  left: 93px;
+  position: absolute;
+  top: 610px;
+  width: 29px;
+}
+
+.post .img {
+  height: 15px;
+  left: 154px;
+  position: absolute;
+  top: 610px;
+  width: 31px;
+}
+
+.post .vector-stroke-2 {
+  height: 18px;
+  left: 325px;
+  position: absolute;
+  top: 610px;
+  width: 25px;
+}

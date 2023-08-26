@@ -23,4 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 *.txt
+.env
 
+
+# util files
+Notes.md
+*.rest

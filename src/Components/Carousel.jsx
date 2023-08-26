@@ -1,0 +1,46 @@
+import React, { useState } from "react";
+import "./public/style.css";
+
+function Carousel({slides}) {
+  
+  const [index, setIndex] = useState(0);
+
+  const nextSlide = () => {
+    if (index === slides.length - 1) {
+      setIndex(0);
+    } else {
+      setIndex(index + 1);
+    }
+  };
+
+  const prevSlide = () => {
+    if (index === 0) {
+      setIndex(slides.length - 1);
+    } else {
+      setIndex(index - 1);
+    }
+  };
+
+  const currentSlide = slides[index];
+  const isVideo = currentSlide.endsWith(".mov") || currentSlide.endsWith(".mp4");
+
+  return (
+    <div>
+      {isVideo ? (
+        <video className="frame" controls>
+          <source src={'../../uploaded_files/'+currentSlide} />
+        </video>
+      ) : (
+        <img src={'../../uploaded_files/'+currentSlide} className="frame" alt={`Slide ${index + 1}`} />
+      )}
+      <button onClick={nextSlide} className="next">
+        ❰
+      </button>
+      <button onClick={prevSlide} className="prev">
+        ❱
+      </button>
+    </div>
+  );
+}
+
+export default Carousel;
