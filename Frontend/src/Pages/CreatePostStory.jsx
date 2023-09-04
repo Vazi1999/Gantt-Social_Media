@@ -12,7 +12,7 @@ function PostStoryPage() {
   useEffect(() => {
     const Authorize = async () => {
       try {
-        const response = await fetch('https://ShakeDvirGanttAPI/api/Authorize', {
+        const response = await fetch('https://ShakeDvirGanttAPI.onrender.com/api/Authorize', {
           method: 'GET',
           headers: { 
             'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ function PostStoryPage() {
       
     try {
       console.log(formData);
-      const response = await fetch('https://ShakeDvirGanttAPI/api/createItem', {
+      const response = await fetch('https://ShakeDvirGanttAPI.onrender.com/api/createItem', {
         method: 'POST',
         credentials:'include',
         body: formData,

@@ -20,7 +20,7 @@ const BigCalendar = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch('https://ShakeDvirGanttAPI/api/getEvents', {
+        const response = await fetch('https://ShakeDvirGanttAPI.onrender.com/api/getEvents', {
           method: 'GET',
           headers: { 
             'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ const BigCalendar = () => {
 
     const fetchPermissions = async () => {
       try {
-        const response = await fetch('https://ShakeDvirGanttAPI/api/Authorize', {
+        const response = await fetch('https://ShakeDvirGanttAPI.onrender.com/api/Authorize', {
           method: 'GET',
           headers: { 
             'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ const BigCalendar = () => {
     const formattedDate = moment(date).format('YYYY-MM-DD');
     try {
       console.log(formattedDate);
-      const response = await fetch('https://ShakeDvirGanttAPI/api/getDate', {
+      const response = await fetch('https://ShakeDvirGanttAPI.onrender.com/api/getDate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

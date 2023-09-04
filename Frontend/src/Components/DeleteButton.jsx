@@ -14,7 +14,7 @@ function DeleteButton({ itemToDelete }) {
   const handleConfirmDelete = async () => {
     try {
         // Send a request to the server to delete the item
-        const response = await fetch('https://ShakeDvirGanttAPI/api/deleteItem', {
+        const response = await fetch('https://ShakeDvirGanttAPI.onrender.com/api/deleteItem', {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',

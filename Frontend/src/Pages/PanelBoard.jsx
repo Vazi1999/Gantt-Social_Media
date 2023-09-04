@@ -14,7 +14,7 @@ function PanelBoard() {
         const fetchUsers = async () => {
           try {
             
-            const response = await fetch('https://ShakeDvirGanttAPI/api/getUsers', {
+            const response = await fetch('https://ShakeDvirGanttAPI.onrender.com/api/getUsers', {
               method: 'GET',
               headers: { 
                 'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ function PanelBoard() {
 
       const handleUserClick = async (userId) => {
         try {
-            const response = await fetch('https://ShakeDvirGanttAPI/api/updateWhichUser', {
+            const response = await fetch('https://ShakeDvirGanttAPI.onrender.com/api/updateWhichUser', {
                 method: 'PUT',
                 headers: {
                    'Content-Type': 'application/json',

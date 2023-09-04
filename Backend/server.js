@@ -34,7 +34,7 @@ mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true , useUnifiedTop
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin:'https://ShakeDvirGantt', // development only.
+  origin:'https://ShakeDvirGantt.onrender.com', // development only.
   credentials: true
 }));
 

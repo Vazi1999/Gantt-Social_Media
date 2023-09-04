@@ -9,7 +9,7 @@ import Post from '../Components/Post';
 import DeleteButton from '../Components/DeleteButton';
 import './public/index.css';
 
-const backendServer = "https://ShakeDvirGanttAPI/uploaded_files/" // on development need to be changed.
+const backendServer = "https://ShakeDvirGanttAPI.onrender.com/uploaded_files/" // on development need to be changed.
 
 const DetailPage = () => {
     const { date } = useParams();
@@ -24,7 +24,7 @@ const DetailPage = () => {
     useEffect(() => {
       const Authorize = async () => {
         try {
-          const response = await fetch('https://ShakeDvirGanttAPI/api/Authorize', {
+          const response = await fetch('https://ShakeDvirGanttAPI.onrender.com/api/Authorize', {
             method: 'GET',
             headers: { 
               'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ const DetailPage = () => {
         // Fetch pageData from the server.
         const fetchPageData = async () => {
           try {
-            const response = await fetch('https://ShakeDvirGanttAPI/api/getPosts', {
+            const response = await fetch('https://ShakeDvirGanttAPI.onrender.com/api/getPosts', {
               method: 'GET',
               headers: { 
                 'Content-Type': 'application/json',
