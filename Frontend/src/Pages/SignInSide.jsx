@@ -53,7 +53,7 @@ export default function SignInSide() {
     event.preventDefault();
     const requestBody = {username:username, password:password}
     try {
-      const response = await fetch('https://ShakeDvirGanttAPI.onrender.com/api/login', {
+      const response = await fetch('https://shakedvirganttapi.onrender.com/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials:'include',

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./public/style.css";
 
-const backendServer = "https://ShakeDvirGanttAPI.onrender.com/uploaded_files/" // on development need to be changed.
+const backendServer = "https://shakedvirganttapi.onrender.com/uploaded_files/" // on development need to be changed.
 
 function Carousel({slides , type}) {
   
