@@ -12,7 +12,7 @@ function SignUpPage() {
   useEffect(() =>{
     async function authenticate(){
       try {
-        const response = await fetch('http://localhost:3000/api/Authorize', {
+        const response = await fetch('https://ShakeDvirGanttAPI/api/Authorize', {
           method: 'GET',
           headers: { 
             'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ function SignUpPage() {
   const handleSignUp = async () => {
     const requestBody = {username: username, password: password};
     try {
-      const response = await fetch('http://localhost:3000/api/register', {
+      const response = await fetch('https://ShakeDvirGanttAPI/api/register', {
         method: 'POST',
         headers:{
           'content-type': 'application/json',

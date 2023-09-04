@@ -7,7 +7,7 @@ async function DeleteOldFiles(newFiles){
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth();
 
-    const folderPath = './uploaded_files';
+    const folderPath = './public/uploaded_files';
 
     fs.readdir(folderPath, (err, files) => {
         if (err) {

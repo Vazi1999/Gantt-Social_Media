@@ -6,9 +6,9 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose'); // MongoDB driver
 const multer = require('multer'); // For handling file uploads
+const path = require('path');
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
-const path = require('path');
 const jwt = require('jsonwebtoken');
 const jwtMiddleware = require('./Auth')
 const DeleteOldFiles = require('./DeleteFiles');
@@ -31,10 +31,10 @@ mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true , useUnifiedTop
   })
   .catch((err) => console.log(err))
 
-  
+app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin:'http://localhost:5173',
+  origin:'https://ShakeDvirGantt', // development only.
   credentials: true
 }));
 
@@ -45,7 +45,7 @@ app.use(session({
   genid: function(req) {
     return uuid.v4() // use UUIDs for session IDs
   },
-  secret: 'keyboard cat',
+  secret: process.env.SESSION_SECRET,
   saveUninitialized: false,
   resave: false,
   httpOnly:false
@@ -65,8 +65,7 @@ app.use((req, res, next) => {
 // Multer setup
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const absolutePath = path.resolve(__dirname, '../Frontend/uploaded_files/');
-    cb(null, absolutePath); // Destination folder for uploaded files
+    cb(null, path.join(__dirname, 'public/uploaded_files/')); // Destination folder for uploaded files
   },
   filename: function (req, file, cb) {
     cb(null, req.session.userData.DATE + '-' + file.originalname);
@@ -74,9 +73,6 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-app.get('/api/test', (req, res) => {
-  res.status(200).json(req.session);
-});
 
 app.post('/api/createItem', upload.array('files'), async (req, res) => {
   if(!req.session.userData.IsAdmin) return res.sendStatus(401); // No admin.

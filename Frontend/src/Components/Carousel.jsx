@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./public/style.css";
 
+const backendServer = "https://ShakeDvirGanttAPI/uploaded_files/" // on development need to be changed.
+
 function Carousel({slides , type}) {
   
   const [index, setIndex] = useState(0);
@@ -28,10 +30,10 @@ function Carousel({slides , type}) {
     <div>
       {isVideo ? (
         <video className={type==="Post"? "frame":"frame2"} controls>
-          <source src={'../../uploaded_files/'+currentSlide} />
+          <source src={backendServer+currentSlide} />
         </video>
       ) : (
-        <img src={'../../uploaded_files/'+currentSlide} className={type==="Post"? "frame":"frame2"} alt={`Slide ${index + 1}`} />
+        <img src={backendServer+currentSlide} className={type==="Post"? "frame":"frame2"} alt={`Slide ${index + 1}`} />
       )}
       {type==="Post" &&
       <button onClick={nextSlide} className="next">

@@ -9,6 +9,8 @@ import Post from '../Components/Post';
 import DeleteButton from '../Components/DeleteButton';
 import './public/index.css';
 
+const backendServer = "https://ShakeDvirGanttAPI/uploaded_files/" // on development need to be changed.
+
 const DetailPage = () => {
     const { date } = useParams();
     const formattedDate = new Date(date);
@@ -22,7 +24,7 @@ const DetailPage = () => {
     useEffect(() => {
       const Authorize = async () => {
         try {
-          const response = await fetch('http://localhost:3000/api/Authorize', {
+          const response = await fetch('https://ShakeDvirGanttAPI/api/Authorize', {
             method: 'GET',
             headers: { 
               'Content-Type': 'application/json',
@@ -54,7 +56,7 @@ const DetailPage = () => {
         // Fetch pageData from the server.
         const fetchPageData = async () => {
           try {
-            const response = await fetch('http://localhost:3000/api/getPosts', {
+            const response = await fetch('https://ShakeDvirGanttAPI/api/getPosts', {
               method: 'GET',
               headers: { 
                 'Content-Type': 'application/json',
@@ -110,9 +112,9 @@ const DetailPage = () => {
             sx={{
               position: 'fixed',
               backgroundColor: '#f8f7f6',
-              top: 0, // Set top to 0 to align it to the top
-              left: 0, // Set left to 0 to align it to the left
-              width: '100%', // Make it span the full width
+              top: 0,
+              left: 0, 
+              width: '100%', 
             }}
           >
         <Grid container direction="row" justifyContent="space-between" alignItems="flex-start">
@@ -147,7 +149,7 @@ const DetailPage = () => {
           </Grid>}
           <Grid item xs={12} align='center'>
             <Typography variant='h4' gutterBottom  className='itemTitle' sx={{marginBottom:'40px'}}>:HighLights</Typography>
-            <img src={'../../uploaded_files/'+item.files[0]} width={400} height={100}></img>
+            <img src={backendServer+item.files[0]} width={400} height={100}></img>
           </Grid>
         </Grid>
         ))}
@@ -190,7 +192,7 @@ const DetailPage = () => {
                                 }}
                               >
                                 <source
-                                  src={'../../uploaded_files/' + imageURL}
+                                  src={backendServer + imageURL}
                                 />
                               </video>
                             );
@@ -198,7 +200,7 @@ const DetailPage = () => {
                             return (
                               <img
                                 key={imgIndex}
-                                src={'../../uploaded_files/' + imageURL}
+                                src={backendServer + imageURL}
                                 alt={`Story Image ${imgIndex}`}
                                 style={{
                                   width: '250px',

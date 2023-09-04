@@ -14,12 +14,13 @@ function DeleteButton({ itemToDelete }) {
   const handleConfirmDelete = async () => {
     try {
         // Send a request to the server to delete the item
-        const response = await fetch('http://localhost:3000/api/deleteItem', {
+        const response = await fetch('https://ShakeDvirGanttAPI/api/deleteItem', {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
             'authorization': 'Bearer ' + token
           },
+          credentials:'include',
           body: JSON.stringify({item:itemToDelete}),
         });
   
