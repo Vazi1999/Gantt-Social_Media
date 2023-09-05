@@ -23,7 +23,7 @@ const app = express();
 
 //global variables
 const PORT = process.env.PORT || 3000;
-const frontendServer = 'https://shakedvirgantt.onrender.com';
+const frontendServer = 'https://shakedvirgantt.netlify.app';
 
 
 mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true , useUnifiedTopology: true})
