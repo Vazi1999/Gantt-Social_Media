@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./public/style.css";
 
-const backendServer = "https://shakedvirganttapi.onrender.com/uploaded_files/" // on development need to be changed.
+const backendServer = 'https://shakedvirganttapi.onrender.com'; // on development need to be changed.
 
 function Carousel({slides , type}) {
   
@@ -30,10 +30,10 @@ function Carousel({slides , type}) {
     <div>
       {isVideo ? (
         <video className={type==="Post"? "frame":"frame2"} controls>
-          <source src={backendServer+currentSlide} />
+          <source src={backendServer+'/'+currentSlide} />
         </video>
       ) : (
-        <img src={backendServer+currentSlide} className={type==="Post"? "frame":"frame2"} alt={`Slide ${index + 1}`} />
+        <img src={backendServer+'/'+currentSlide} className={type==="Post"? "frame":"frame2"} alt={`Slide ${index + 1}`} />
       )}
       {type==="Post" &&
       <button onClick={nextSlide} className="next">

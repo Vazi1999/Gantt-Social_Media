@@ -21,7 +21,10 @@ const CalendarEventsDB = require('./models/calendar_events');
 
 const app = express();
 
+//global variables
 const PORT = process.env.PORT || 3000;
+const frontendServer = 'https://shakedvirgantt.onrender.com';
+
 
 mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true , useUnifiedTopology: true})
   .then(async (result) => {
@@ -34,7 +37,7 @@ mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true , useUnifiedTop
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-  origin:'https://shakedvirgantt.onrender.com', // development only.
+  origin: frontendServer, 
   credentials: true
 }));
 
@@ -65,7 +68,7 @@ app.use((req, res, next) => {
 // Multer setup
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, 'public/uploaded_files/')); // Destination folder for uploaded files
+    cb(null, path.join(__dirname, 'public/')); // Destination folder for uploaded files
   },
   filename: function (req, file, cb) {
     cb(null, req.session.userData.DATE + '-' + file.originalname);

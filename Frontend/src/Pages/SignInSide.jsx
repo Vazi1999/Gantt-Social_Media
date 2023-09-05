@@ -20,18 +20,17 @@ function Copyright(props) {
 }
 
 const imageUrls = [
-  '../../src/assets/loginPhoto1.jpg',
-  '../../src/assets/loginPhoto2.jpg',
-  '../../src/assets/loginPhoto3.jpg',
-  '../../src/assets/loginPhoto4.jpg',
-  '../../src/assets/loginPhoto5.jpg',
-  '../../src/assets/loginPhoto6.jpg',
-  '../../src/assets/loginPhoto7.jpg',
-  '../../src/assets/loginPhoto8.jpg',
-  '../../src/assets/loginPhoto9.jpg',
-  '../../src/assets/loginPhoto10.jpg',
+  '/loginPhoto1.jpg',
+  '/loginPhoto3.jpg',
+  '/loginPhoto4.jpg',
+  '/loginPhoto5.jpg',
+  '/loginPhoto6.jpg',
+  '/loginPhoto7.jpg',
+  '/loginPhoto8.jpg',
+  '/loginPhoto9.jpg',
+  '/loginPhoto10.jpg',
 ]
-
+const backendServer = 'https://shakedvirganttapi.onrender.com';
 
 export default function SignInSide() {
   
@@ -53,7 +52,7 @@ export default function SignInSide() {
     event.preventDefault();
     const requestBody = {username:username, password:password}
     try {
-      const response = await fetch('https://shakedvirganttapi.onrender.com/api/login', {
+      const response = await fetch(backendServer +'/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials:'include',
@@ -160,7 +159,7 @@ export default function SignInSide() {
               )}
               <Copyright sx={{ mt: 5 }} />
             </Box>
-            <img src="../../src/assets/Contact.gif" width="500" height="300" style={{marginTop:'70px'}}></img>
+            <img src="/Contact.gif" width="450" height="300" style={{marginTop:'70px'}}></img>
           </Box>
         </Grid>
       </Grid>

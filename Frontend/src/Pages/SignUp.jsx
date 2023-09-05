@@ -2,6 +2,7 @@ import React, { useState , useEffect } from 'react';
 import { Container, Typography, TextField, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
+const backendServer = 'https://shakedvirganttapi.onrender.com';
 
 function SignUpPage() {
   const [username, setUsername] = useState('');
@@ -12,7 +13,7 @@ function SignUpPage() {
   useEffect(() =>{
     async function authenticate(){
       try {
-        const response = await fetch('https://shakedvirganttapi.onrender.com/api/Authorize', {
+        const response = await fetch(backendServer +'/api/Authorize', {
           method: 'GET',
           headers: { 
             'Content-Type': 'application/json',
@@ -46,7 +47,7 @@ function SignUpPage() {
   const handleSignUp = async () => {
     const requestBody = {username: username, password: password};
     try {
-      const response = await fetch('https://shakedvirganttapi.onrender.com/api/register', {
+      const response = await fetch(backendServer +'/api/register', {
         method: 'POST',
         headers:{
           'content-type': 'application/json',

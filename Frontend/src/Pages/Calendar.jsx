@@ -10,7 +10,7 @@ import './public/index.css';
 // const localizer = momentLocalizer(moment);
 moment.locale("en-GB");
 const localizer = momentLocalizer(moment);
-
+const backendServer = 'https://shakedvirganttapi.onrender.com';
 const BigCalendar = () => {
   const [events, setEvents] = useState([]); // State to hold the events
   const [admin ,setAdmin] = useState(false);
@@ -20,7 +20,7 @@ const BigCalendar = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch('https://shakedvirganttapi.onrender.com/api/getEvents', {
+        const response = await fetch(backendServer +'/api/getEvents', {
           method: 'GET',
           headers: { 
             'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ const BigCalendar = () => {
 
     const fetchPermissions = async () => {
       try {
-        const response = await fetch('https://shakedvirganttapi.onrender.com/api/Authorize', {
+        const response = await fetch(backendServer +'/api/Authorize', {
           method: 'GET',
           headers: { 
             'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ const BigCalendar = () => {
     const formattedDate = moment(date).format('YYYY-MM-DD');
     try {
       console.log(formattedDate);
-      const response = await fetch('https://shakedvirganttapi.onrender.com/api/getDate', {
+      const response = await fetch(backendServer +'/api/getDate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

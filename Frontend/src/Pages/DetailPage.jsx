@@ -7,9 +7,10 @@ import { useState , useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Post from '../Components/Post';
 import DeleteButton from '../Components/DeleteButton';
+import AddButton from '../Components/AddButton';
 import './public/index.css';
 
-const backendServer = "https://shakedvirganttapi.onrender.com/uploaded_files/" // on development need to be changed.
+const backendServer = 'https://shakedvirganttapi.onrender.com'; // on development need to be changed.
 
 const DetailPage = () => {
     const { date } = useParams();
@@ -24,7 +25,7 @@ const DetailPage = () => {
     useEffect(() => {
       const Authorize = async () => {
         try {
-          const response = await fetch('https://shakedvirganttapi.onrender.com/api/Authorize', {
+          const response = await fetch(backendServer +'/api/Authorize', {
             method: 'GET',
             headers: { 
               'Content-Type': 'application/json',
@@ -56,7 +57,7 @@ const DetailPage = () => {
         // Fetch pageData from the server.
         const fetchPageData = async () => {
           try {
-            const response = await fetch('https://shakedvirganttapi.onrender.com/api/getPosts', {
+            const response = await fetch(backendServer +'/api/getPosts', {
               method: 'GET',
               headers: { 
                 'Content-Type': 'application/json',
@@ -80,30 +81,6 @@ const DetailPage = () => {
         fetchPageData();
       }, []);
 
-    
-    const [anchorEl, setAnchorEl] = useState(null);
-
-    const handleAddClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const open = Boolean(anchorEl);
-    const id = open ? 'options-popover' : undefined;
-
-    const handleItemClick = (event) => {
-        const buttonText = event.target.textContent
-        if(buttonText === 'Post/Story')
-        {
-            navigate("/create-post");
-        }
-        else{
-            navigate("/create-reel");
-        }
-    }
 
     return (
          <div lang='he' dir='rtl' className='background'>
@@ -149,7 +126,7 @@ const DetailPage = () => {
           </Grid>}
           <Grid item xs={12} align='center'>
             <Typography variant='h4' gutterBottom  className='itemTitle' sx={{marginBottom:'40px'}}>:HighLights</Typography>
-            <img src={backendServer+item.files[0]} width={400} height={100}></img>
+            <img src={backendServer+'/'+item.files[0]} width={400} height={100}></img>
           </Grid>
         </Grid>
         ))}
@@ -192,7 +169,7 @@ const DetailPage = () => {
                                 }}
                               >
                                 <source
-                                  src={backendServer + imageURL}
+                                  src={backendServer +'/'+ imageURL}
                                 />
                               </video>
                             );
@@ -200,7 +177,7 @@ const DetailPage = () => {
                             return (
                               <img
                                 key={imgIndex}
-                                src={backendServer + imageURL}
+                                src={backendServer +'/'+ imageURL}
                                 alt={`Story Image ${imgIndex}`}
                                 style={{
                                   width: '250px',
@@ -249,42 +226,12 @@ const DetailPage = () => {
           ))}
         </Grid>
         <Grid container justifyContent="center" marginTop="40px">
-          <img src="../../src/assets/detailContact.gif" width="500" height="200"></img>
+          <img src="/detailContact.gif" width="500" height="200"></img>
         </Grid>
       </Container>
             {admin && (
             <Container align='center' style={{marginTop:'5%'}}>
-                <Button onClick={handleAddClick} variant='outlined' size='large' color='secondary' align='center'>
-                    Add
-                </Button>
-                <Popover
-                    id={id}
-                    open={open}
-                    anchorEl={anchorEl}
-                    onClose={handleClose}
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'center',
-                    }}
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'center',
-                    }}>
-                    <Typography sx={{ padding: '16px' }}>
-                        <Button
-                            onClick={handleItemClick}
-                            variant='contained'
-                            sx={{ marginBottom: '8px', width: '100%' }}>
-                            Post/Story
-                        </Button>
-                        <Button
-                            onClick={handleItemClick}
-                            variant='contained'
-                            sx={{ marginBottom: '8px', width: '100%' }}>
-                            Highlight/Reel
-                        </Button>
-                    </Typography>
-                </Popover>
+                <AddButton/>
             </Container>
         )}
         </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {IconButton , Grid , Dialog ,Button ,DialogActions , DialogContent ,DialogContentText , DialogTitle} from '@mui/material';
 
+const backendServer = 'https://shakedvirganttapi.onrender.com';
 
 function DeleteButton({ itemToDelete }) {
   const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
@@ -14,7 +15,7 @@ function DeleteButton({ itemToDelete }) {
   const handleConfirmDelete = async () => {
     try {
         // Send a request to the server to delete the item
-        const response = await fetch('https://shakedvirganttapi.onrender.com/api/deleteItem', {
+        const response = await fetch(backendServer +'/api/deleteItem', {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',

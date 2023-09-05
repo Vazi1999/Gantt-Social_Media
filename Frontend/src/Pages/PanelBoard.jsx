@@ -2,7 +2,7 @@ import React, { useState , useEffect } from 'react';
 import {Typography , Grid , Container ,Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import './public/index.css';
-
+const backendServer = 'https://shakedvirganttapi.onrender.com';
 function PanelBoard() {
     const [users, setUsers] = useState([]);
     const token = localStorage.getItem('token')
@@ -14,7 +14,7 @@ function PanelBoard() {
         const fetchUsers = async () => {
           try {
             
-            const response = await fetch('https://shakedvirganttapi.onrender.com/api/getUsers', {
+            const response = await fetch(backendServer +'/api/getUsers', {
               method: 'GET',
               headers: { 
                 'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ function PanelBoard() {
 
       const handleUserClick = async (userId) => {
         try {
-            const response = await fetch('https://shakedvirganttapi.onrender.com/api/updateWhichUser', {
+            const response = await fetch(backendServer +'/api/updateWhichUser', {
                 method: 'PUT',
                 headers: {
                    'Content-Type': 'application/json',

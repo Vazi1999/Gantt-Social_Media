@@ -1,7 +1,7 @@
 import React, { useState , useEffect } from 'react';
 import { Typography, TextField, Button, Container, CssBaseline, Box ,InputAdornment , Select , MenuItem , FormControl , InputLabel} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-
+const backendServer = 'https://shakedvirganttapi.onrender.com';
 function ReelHighlightPage() {
   const [files, setFiles] = useState([]);
   const [selectedTime, setSelectedTime] = useState('');
@@ -12,7 +12,7 @@ function ReelHighlightPage() {
   useEffect(() => {
     const Authorize = async () => {
       try {
-        const response = await fetch('https://shakedvirganttapi.onrender.com/api/Authorize', {
+        const response = await fetch(backendServer +'/api/Authorize', {
           method: 'GET',
           headers: { 
             'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ function ReelHighlightPage() {
     formData.append('description', '');
     try {
       console.log(formData);
-      const response = await fetch('https://shakedvirganttapi.onrender.com/api/createItem', {
+      const response = await fetch(backendServer +'/api/createItem', {
         method: 'POST',
         credentials:'include',
         body: formData,
