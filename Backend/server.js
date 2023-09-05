@@ -3,7 +3,6 @@ const express = require('express');
 const session = require('express-session');
 require('dotenv').config(); // .env configuration
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose'); // MongoDB driver
 const multer = require('multer'); // For handling file uploads
 const path = require('path');
@@ -41,7 +40,7 @@ app.use(cors({
   credentials: true
 }));
 
-app.use(bodyParser.json()); // Parse incoming JSON data
+app.use(express.json()); // Parse incoming JSON data
 
 // Set up session middleware
 app.use(session({
